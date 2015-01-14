@@ -5,7 +5,8 @@ module.exports = diff;
 function diff(){
 	var length = arguments.length;
 	var ref = arguments[0];
-	var diff = {};
+	//diffObj was defined with the same name of function
+	var diffObj = {};
 	var c;
 	var keys;
 	var keysLength;
@@ -21,9 +22,9 @@ function diff(){
 			key = keys[u];
 
 			if (c[key] !== ref[key])
-				diff[key] = c[key];
+				diffObj[key] = c[key];
 		}
 	}
 
-	return diff;
+	return diffObj;
 }

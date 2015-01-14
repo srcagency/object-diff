@@ -30,7 +30,12 @@
 			"android-browser/latest"
 		]
 	},
+	"jshintConfig": {
+	"node":true,
+    "esnext": true
+  	},
 	"scripts": {
+		"lint": "jshint *.json *.js",
 		"test": "node test",
 		"browser-test": "testling"
 	},
