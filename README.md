@@ -3,6 +3,8 @@
 Get the minimal patch to extend objectA with to transform it into
 objectB
 
+[![NPM Version][npm-image]][npm-url]
+
 Consider an object retrieved from a server:
 
 ```js
@@ -71,3 +73,5 @@ objectDiff(a, b);
 
 [MIT](http://opensource.org/licenses/MIT) ©
 [src.agency](http://src.agency) / Thomas Jensen
+[npm-image]: https://img.shields.io/npm/v/object-diff.svg?style=flat
+[npm-url]: https://npmjs.org/package/object-diff
