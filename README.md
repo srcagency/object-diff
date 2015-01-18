@@ -1,7 +1,6 @@
 # object diff
 
-Get the minimal patch to extend objectA with to transform it into
-objectB
+Get the minimal patch to extend objectA with to transform it into objectB
 
 [![npm version][npm-image]][npm-url]
 
@@ -15,8 +14,8 @@ Consider an object retrieved from a server:
 }
 ```
 
-Now the user changes stuff using some frontend (e.g. a HTML form) and
-ends with:
+Now the user changes stuff using some frontend (e.g. a HTML form) and ends
+with:
 
 ```js
 {
@@ -26,13 +25,13 @@ ends with:
 }
 ```
 
-When he hits save, you only want to send off the changed parts to the
-server, to save bits (because you'r indeed a programmer), but also to
-avoid any unnecessary "merge conflicts" at the server.
+When he hits save, you only want to send off the changed parts to the servers,
+to save bits (because you're indeed a programmer), but also to avoid any
+unnecessary "merge conflicts" at the server.
 
-Imagine two users changing the same object; if they did not change the
-exact same keys of the object, the last user won't erase the first
-user's changes - in a lot of cases, that's the expected behavior.
+Imagine two users changing the same object; if they did not change the exact
+same keys of the object, the last user won't erase the first user's changes -
+in a lot of cases, that's the expected behavior.
 
 ## Install
 
@@ -43,7 +42,7 @@ npm install object-diff
 ## Usage
 
 ```js
-var objectDiff = require('object-diff');
+var diff = require('object-diff');
 
 var a = {
 	speed: 4,
@@ -59,7 +58,7 @@ var b = {
 	weight: 10,			// added
 };
 
-objectDiff(a, b);
+diff(a, b);
 /*
 {
 	power: 22,
