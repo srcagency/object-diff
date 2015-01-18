@@ -1,25 +1,13 @@
 'use strict';
 
-module.exports = diff;
+export default function(){
+	let ref = arguments[0];
+	let diff = {};
 
-function diff(){
-	var length = arguments.length;
-	var ref = arguments[0];
-	var diff = {};
-	var c;
-	var keys;
-	var keysLength;
-	var key;
-	var u;
+	for (let c of arguments) {
+		let keys = Object.keys(c);
 
-	for (var i = 1;i < length;i++) {
-		c = arguments[i];
-		keys = Object.keys(c);
-		keysLength = keys.length;
-
-		for (u = 0;u < keysLength;u++) {
-			key = keys[u];
-
+		for (let key of keys) {
 			if (c[key] !== ref[key])
 				diff[key] = c[key];
 		}

@@ -1,17 +1,17 @@
 'use strict';
 
-var objectDiff = require('./');
-var test = require('tape');
+import objectDiff from './';
+import test from 'tape';
 
 test(function( t ) {
-	var a = {
+	let a = {
 		speed: 4,
 		power: 54,
 		height: undefined,
 		level: 1,
 	};
 
-	var b = {
+	let b = {
 		speed: 4,			// unchanged
 		power: 22,			// changed
 		level: undefined,	// changed
@@ -24,7 +24,7 @@ test(function( t ) {
 		weight: 10,
 	});
 
-	var c = {
+	let c = {
 		speed: 5,				// changed
 		power: 54,				// unchanged
 		level: 100,				// changed

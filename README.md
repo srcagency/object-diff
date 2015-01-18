@@ -42,16 +42,16 @@ npm install object-diff
 ## Usage
 
 ```js
-var diff = require('object-diff');
+import diff from 'object-diff';
 
-var a = {
+let a = {
 	speed: 4,
 	power: 54,
 	height: undefined,
 	level: 1,
 };
 
-var b = {
+let b = {
 	speed: 4,			// unchanged
 	power: 22,			// changed
 	level: undefined,	// changed
