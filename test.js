@@ -1,7 +1,6 @@
 'use strict';
 
 var objectDiff = require('./');
-var extend = require('extend');
 var test = require('tape');
 
 test(function( t ) {

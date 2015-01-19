@@ -15,7 +15,6 @@
 	"author": "Thomas Jensen <thomas@src.agency> (http://src.agency)",
 	"devDependencies": {
 		"tape": "^3.2.0",
-		"extend": "^2.0.0",
 		"testling": "^1.7.1"
 	},
 	"testling": {
