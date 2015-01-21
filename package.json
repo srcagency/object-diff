@@ -15,7 +15,8 @@
 	"author": "Thomas Jensen <thomas@src.agency> (http://src.agency)",
 	"devDependencies": {
 		"tape": "^3.0.0",
-		"extend": "^2.0.0"
+		"extend": "^2.0.0",
+		"jshint": "^2.5.11"
 	},
 	"testling": {
 		"files": "test.js",
@@ -30,7 +31,12 @@
 			"android-browser/latest"
 		]
 	},
+	"jshintConfig": {
+		"node":true,
+		"esnext": true
+	},
 	"scripts": {
+		"lint": "jshint *.json *.js",
 		"test": "node test",
 		"browser-test": "testling"
 	},
