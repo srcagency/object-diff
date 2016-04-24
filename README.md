@@ -66,6 +66,30 @@ diff(a, b);
 	weight: 10,
 }
 */
+
+
+// using a custom equality function
+
+var past = '2016-04-24T10:39:23.419Z';
+
+diff.custom({
+	equal: dateAwareComparator,
+}, {
+	then: new Date(past),
+}, {
+	then: new Date(past),
+});
+/*
+{}
+*/
+
+function dateAwareComparator( a, b ){
+	if (a instanceof Date && b instanceof Date)
+		return a.getTime() === b.getTime();
+
+	return a === b;
+}
+
 ```
 
 ## License
