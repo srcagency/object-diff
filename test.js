@@ -1,6 +1,6 @@
 'use strict';
 
-var objectDiff = require('./');
+var diff = require('./');
 var test = require('tape');
 
 test(function( t ) {
@@ -18,7 +18,7 @@ test(function( t ) {
 		weight: 10,			// added
 	};
 
-	t.deepEqual(objectDiff(a, b), {
+	t.deepEqual(diff(a, b), {
 		power: 22,
 		level: undefined,
 		weight: 10,
@@ -32,7 +32,7 @@ test(function( t ) {
 		location: undefined,	// added but undefined
 	};
 
-	t.deepEqual(objectDiff(a, b, c), {
+	t.deepEqual(diff(a, b, c), {
 		speed: 5,
 		power: 22,
 		level: 100,
