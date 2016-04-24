@@ -42,3 +42,38 @@ test(function( t ) {
 
 	t.end();
 });
+
+test('Custom equality', function( t ) {
+	var created = '2016-04-24T10:39:23.419Z';
+	var now = new Date();
+
+	var a = {
+		created: new Date(created),
+		updated: new Date(created),
+	};
+
+	var b = {
+		created: new Date(created),	// unchanged
+		updated: now,				// changed
+	};
+
+	t.deepEqual(diff(a, b), {
+		created: new Date(created),
+		updated: now,
+	}, 'expected default behavior');
+
+	t.deepEqual(diff.custom({
+		equal: dateAwareComparator,
+	}, a, b), {
+		updated: now,
+	});
+
+	t.end();
+});
+
+function dateAwareComparator( a, b ){
+	if (a instanceof Date && b instanceof Date)
+		return a.getTime() === b.getTime();
+
+	return a === b;
+}
