@@ -40,6 +40,8 @@ test(function( t ) {
 		material: 'steel',
 	});
 
+	t.deepEqual(diff({}, {}), {});
+
 	t.end();
 });
 
