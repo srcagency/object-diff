@@ -16,7 +16,7 @@ function diff( opts, subjects ){
 	var length = subjects.length;
 	var ref = subjects[0];
 	var diff = {};
-	var equal = opts && opts.equal || isStrictEqual;
+	var equal = opts && opts.equal || isStrictEqual;
 	var c;
 	var keys;
 	var keysLength;
