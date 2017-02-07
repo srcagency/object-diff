@@ -1,7 +1,7 @@
 {
 	"name": "object-diff",
 	"description": "Get the diff from objectA to objectB",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"main": "index.js",
 	"repository": {
 		"type": "git",
