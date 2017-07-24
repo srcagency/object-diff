@@ -17,6 +17,7 @@ function diff( opts, subjects ){
 	var ref = subjects[0];
 	var diff = {};
 	var equal = opts && opts.equal || isStrictEqual;
+	var ignoredProperties = opts && opts.ignoredProperties || [];
 	var c;
 	var keys;
 	var keysLength;
@@ -31,7 +32,7 @@ function diff( opts, subjects ){
 		for (u = 0;u < keysLength;u++) {
 			key = keys[u];
 
-			if (!equal(c[key], ref[key]))
+			if (!equal(c[key], ref[key]) && ignoredProperties.indexOf(key) < 0)
 				diff[key] = c[key];
 		}
 	}

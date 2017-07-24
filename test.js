@@ -45,6 +45,24 @@ test(function( t ) {
 	t.end();
 });
 
+test('Ignored Properties', function ( t ) {
+	var a = {
+		changed: 1,
+		ignored: 'some text'
+	};
+
+	var b = {
+		changed: 2,
+		ignored: 'asdf'
+	};
+
+	t.deepEqual(diff.custom({ignoredProperties: ['ignored']}, a, b), {
+		'changed': 2
+	});
+
+	t.end();
+});
+
 test('Custom equality', function( t ) {
 	var created = '2016-04-24T10:39:23.419Z';
 	var now = new Date();
