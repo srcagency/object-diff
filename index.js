@@ -40,5 +40,43 @@ function diff( opts, subjects ){
 }
 
 function isStrictEqual( a, b ){
+	/* Date */
+	if (a instanceof Date && !(b instanceof Date)) return false;
+	else if (!(a instanceof Date) && b instanceof Date) return false;
+	else if (a instanceof Date && b instanceof Date)
+		return a.getTime() === b.getTime();
+
+	/* Array */
+	else if (Array.isArray(a) && !Array.isArray(b)) return false;
+	else if (!Array.isArray(a) && Array.isArray(b)) return false;
+	else if (Array.isArray(a) && Array.isArray(b)) {
+		if (a.length != b.length) return false;
+		for (var i = 0; i < a.length; i++) {
+			if (a[i] != b[i]) return false;
+		}
+
+		return true;
+	}
+	/* Object */
+	else if (typeof a === 'object' && typeof b !== 'object') return false;
+	else if (typeof a !== 'object' && typeof b === 'object') return false;
+	else if (typeof a == 'object' && typeof b === 'object') {
+		var keysA = Object.keys(a);
+		var keysB = Object.keys(b);
+		if (keysA.length != keysB.length) return false;
+		for (var i = 0; i < keysA.length; i++) {
+			if (typeof b[keysA[i]] === 'undefined') return false;
+			if (!isStrictEqual(a[keysA[i]], b[keysA[i]])) return false;
+		}
+
+		for (var i = 0; i < keysB.length; i++) {
+			if (typeof a[keysB[i]] === 'undefined') return false;
+			if (!isStrictEqual(a[keysB[i]], b[keysB[i]])) return false;
+		}
+
+		return true;
+	}
+
+	/* Value */
 	return a === b;
 }
