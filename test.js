@@ -9,6 +9,7 @@ test(function( t ) {
 		power: 54,
 		height: undefined,
 		level: 1,
+		skills: ['magic', 'running']
 	};
 
 	var b = {
@@ -16,6 +17,7 @@ test(function( t ) {
 		power: 22,			// changed
 		level: undefined,	// changed
 		weight: 10,			// added
+		skills: ['magic', 'running'] // unchanged
 	};
 
 	t.deepEqual(diff(a, b), {
@@ -30,6 +32,7 @@ test(function( t ) {
 		level: 100,				// changed
 		material: 'steel',		// added
 		location: undefined,	// added but undefined
+		skills: ['magic', 'running', 'climbing'] // changed
 	};
 
 	t.deepEqual(diff(a, b, c), {
@@ -38,6 +41,7 @@ test(function( t ) {
 		level: 100,
 		weight: 10,
 		material: 'steel',
+		skills: ['magic', 'running', 'climbing']
 	});
 
 	t.deepEqual(diff({}, {}), {});
@@ -60,8 +64,7 @@ test('Custom equality', function( t ) {
 	};
 
 	t.deepEqual(diff(a, b), {
-		created: new Date(created),
-		updated: now,
+		updated: now
 	}, 'expected default behavior');
 
 	t.deepEqual(diff.custom({
