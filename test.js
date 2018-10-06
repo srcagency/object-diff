@@ -1,36 +1,35 @@
-'use strict';
+'use strict'
 
-var diff = require('./');
-var test = require('tape');
+const diff = require('./')
+const test = require('tape')
 
-test(function( t ) {
-	var a = {
+test(t => {
+	const a = {
 		speed: 4,
 		power: 54,
 		height: undefined,
 		level: 1,
-	};
-
-	var b = {
-		speed: 4,			// unchanged
-		power: 22,			// changed
-		level: undefined,	// changed
-		weight: 10,			// added
-	};
+	}
+	const b = {
+		speed: 4, // unchanged
+		power: 22, // changed
+		level: undefined, // changed
+		weight: 10, // added
+	}
 
 	t.deepEqual(diff(a, b), {
 		power: 22,
 		level: undefined,
 		weight: 10,
-	});
+	})
 
-	var c = {
-		speed: 5,				// changed
-		power: 54,				// unchanged
-		level: 100,				// changed
-		material: 'steel',		// added
-		location: undefined,	// added but undefined
-	};
+	const c = {
+		speed: 5, // changed
+		power: 54, // unchanged
+		level: 100, // changed
+		material: 'steel', // added
+		location: undefined, // added but undefined
+	}
 
 	t.deepEqual(diff(a, b, c), {
 		speed: 5,
@@ -38,44 +37,45 @@ test(function( t ) {
 		level: 100,
 		weight: 10,
 		material: 'steel',
-	});
+	})
+	t.deepEqual(diff({}, {}), {})
+	t.end()
+})
 
-	t.deepEqual(diff({}, {}), {});
+test('Custom equality', t => {
+	const created = '2016-04-24T10:39:23.419Z'
+	const now = new Date()
 
-	t.end();
-});
-
-test('Custom equality', function( t ) {
-	var created = '2016-04-24T10:39:23.419Z';
-	var now = new Date();
-
-	var a = {
+	const a = {
 		created: new Date(created),
 		updated: new Date(created),
-	};
+	}
 
-	var b = {
-		created: new Date(created),	// unchanged
-		updated: now,				// changed
-	};
+	const b = {
+		created: new Date(created), // unchanged
+		updated: now, // changed
+	}
 
-	t.deepEqual(diff(a, b), {
-		created: new Date(created),
+	t.deepEqual(
+		diff(a, b),
+		{
+			created: new Date(created),
+			updated: now,
+		},
+		'expected default behavior'
+	)
+
+	t.deepEqual(diff.custom(dateAwareComparator, a, b), {
 		updated: now,
-	}, 'expected default behavior');
+	})
 
-	t.deepEqual(diff.custom({
-		equal: dateAwareComparator,
-	}, a, b), {
-		updated: now,
-	});
+	t.end()
+})
 
-	t.end();
-});
+function dateAwareComparator(a, b) {
+	if (a instanceof Date && b instanceof Date) {
+		return a.getTime() === b.getTime()
+	}
 
-function dateAwareComparator( a, b ){
-	if (a instanceof Date && b instanceof Date)
-		return a.getTime() === b.getTime();
-
-	return a === b;
+	return a === b
 }

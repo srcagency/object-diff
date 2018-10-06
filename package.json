@@ -1,38 +1,38 @@
 {
 	"name": "object-diff",
-	"description": "Get the diff from objectA to objectB",
-	"version": "0.0.4",
-	"main": "index.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/srcagency/object-diff.git"
-	},
+	"description": "Get the diff from object A to object B",
+	"version": "1.0.0",
+	"repository": "srcagency/object-diff",
 	"keywords": [
 		"object",
 		"diff",
 		"patch"
 	],
-	"author": "Thomas Jensen <thomas@src.agency> (http://src.agency)",
 	"devDependencies": {
-		"tape": "^4.5.1",
-		"testling": "^1.7.1"
-	},
-	"testling": {
-		"files": "test.js",
-		"browsers": [
-			"ie/8..latest",
-			"chrome/22..latest",
-			"firefox/16..latest",
-			"safari/6..latest",
-			"opera/11.0..latest",
-			"iphone/6..latest",
-			"ipad/6..latest",
-			"android-browser/latest"
-		]
+		"prettier": "^1.14.3",
+		"tape": "^4.9.1"
 	},
 	"scripts": {
 		"test": "node test",
-		"browser-test": "testling"
+		"format": "prettier --write ./*"
+	},
+	"prettier": {
+		"semi": false,
+		"singleQuote": true,
+		"useTabs": true,
+		"bracketSpacing": false,
+		"trailingComma": "es5",
+		"tabWidth": 4,
+		"proseWrap": "always",
+		"overrides": [
+			{
+				"files": "*.md",
+				"options": {
+					"useTabs": false,
+					"tabWidth": 2
+				}
+			}
+		]
 	},
 	"license": "MIT"
 }

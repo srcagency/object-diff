@@ -1,8 +1,7 @@
 # object diff
 
-Get the minimal patch to extend objectA with to transform it into objectB
-
-[![npm version][npm-image]][npm-url]
+Get the minimal patch to extend literal object A with to transform it into
+literal object B
 
 Consider an object retrieved from a server:
 
@@ -14,8 +13,7 @@ Consider an object retrieved from a server:
 }
 ```
 
-Now the user changes stuff using some frontend (e.g. a HTML form) and ends
-with:
+Now the user changes stuff using some frontend (e.g. a HTML form) and ends with:
 
 ```js
 {
@@ -25,40 +23,34 @@ with:
 }
 ```
 
-When he hits save, you only want to send off the changed parts to the servers,
+When they hit save, you only want to send off the changed parts to the servers,
 to save bits (because you're indeed a programmer), but also to avoid any
 unnecessary "merge conflicts" at the server.
 
 Imagine two users changing the same object; if they did not change the exact
-same keys of the object, the last user won't erase the first user's changes -
-in a lot of cases, that's the expected behavior.
-
-## Install
-
-```
-npm install object-diff
-```
+same keys of the object, the last user won't erase the first user's changes - in
+a lot of cases, that's the expected behavior.
 
 ## Usage
 
 ```js
-var diff = require('object-diff');
+const diff = require('object-diff')
 
-var a = {
+const a = {
 	speed: 4,
 	power: 54,
 	height: undefined,
 	level: 1,
-};
+}
 
-var b = {
-	speed: 4,			// unchanged
-	power: 22,			// changed
-	level: undefined,	// changed
-	weight: 10,			// added
-};
+const b = {
+	speed: 4, // unchanged
+	power: 22, // changed
+	level: undefined, // changed
+	weight: 10, // added
+}
 
-diff(a, b);
+diff(a, b)
 /*
 {
 	power: 22,
@@ -67,34 +59,29 @@ diff(a, b);
 }
 */
 
-
 // using a custom equality function
 
-var past = '2016-04-24T10:39:23.419Z';
+const past = '2016-04-24T10:39:23.419Z'
 
-diff.custom({
-	equal: dateAwareComparator,
-}, {
-	then: new Date(past),
-}, {
-	then: new Date(past),
-});
+diff.custom(
+	(a, b) => {
+		if (a instanceof Date && b instanceof Date) {
+			return a.getTime() === b.getTime()
+		}
+		return a === b
+	},
+	{
+		then: new Date(past),
+	},
+	{
+		then: new Date(past),
+	}
+)
 /*
 {}
 */
-
-function dateAwareComparator( a, b ){
-	if (a instanceof Date && b instanceof Date)
-		return a.getTime() === b.getTime();
-
-	return a === b;
-}
-
 ```
 
-## License
+# ES5
 
-[MIT](http://opensource.org/licenses/MIT) ©
-[src.agency](http://src.agency) / Thomas Jensen
-[npm-image]: https://img.shields.io/npm/v/object-diff.svg?style=flat
-[npm-url]: https://npmjs.org/package/object-diff
+For an ES5 friendlier version pin to `0.0.4`. It has no known issues.
