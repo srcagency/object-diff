@@ -3,6 +3,7 @@
 	"description": "Get the diff from object A to object B",
 	"version": "2.0.0",
 	"type":"module",
+	"export": "./index.js",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/srcagency/object-diff.git"
