@@ -1,9 +1,7 @@
-'use strict'
+import {default as diff, custom} from './index.js'
+import test from 'tape'
 
-const diff = require('./')
-const test = require('tape')
-
-test(t => {
+test((t) => {
 	const a = {
 		speed: 4,
 		power: 54,
@@ -42,7 +40,7 @@ test(t => {
 	t.end()
 })
 
-test('Custom equality', t => {
+test('Custom equality', (t) => {
 	const created = '2016-04-24T10:39:23.419Z'
 	const now = new Date()
 
@@ -62,10 +60,10 @@ test('Custom equality', t => {
 			created: new Date(created),
 			updated: now,
 		},
-		'expected default behavior'
+		'expected default behavior',
 	)
 
-	t.deepEqual(diff.custom(dateAwareComparator, a, b), {
+	t.deepEqual(custom(dateAwareComparator, a, b), {
 		updated: now,
 	})
 

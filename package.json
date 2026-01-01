@@ -1,38 +1,22 @@
 {
 	"name": "object-diff",
 	"description": "Get the diff from object A to object B",
-	"version": "1.0.0",
-	"repository": "srcagency/object-diff",
+	"version": "2.0.0",
+	"type":"module",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/srcagency/object-diff.git"
+	},
 	"keywords": [
 		"object",
 		"diff",
 		"patch"
 	],
 	"devDependencies": {
-		"prettier": "^1.14.3",
-		"tape": "^4.9.1"
+		"tape": "^5.9.0"
 	},
 	"scripts": {
-		"test": "node test",
-		"format": "prettier --write ./*"
-	},
-	"prettier": {
-		"semi": false,
-		"singleQuote": true,
-		"useTabs": true,
-		"bracketSpacing": false,
-		"trailingComma": "es5",
-		"tabWidth": 4,
-		"proseWrap": "always",
-		"overrides": [
-			{
-				"files": "*.md",
-				"options": {
-					"useTabs": false,
-					"tabWidth": 2
-				}
-			}
-		]
+		"test": "node test.js"
 	},
 	"license": "MIT"
 }

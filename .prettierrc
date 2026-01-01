@@ -1,0 +1,12 @@
+semi: false
+singleQuote: true
+useTabs: true
+bracketSpacing: false
+tabWidth: 4
+overrides:
+  - files:
+      - "*.md"
+    options:
+      proseWrap: always
+      useTabs: false
+      tabWidth: 2

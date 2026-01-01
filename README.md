@@ -34,20 +34,20 @@ a lot of cases, that's the expected behavior.
 ## Usage
 
 ```js
-const diff = require('object-diff')
+import diff from 'object-diff'
 
 const a = {
-	speed: 4,
-	power: 54,
-	height: undefined,
-	level: 1,
+  speed: 4,
+  power: 54,
+  height: undefined,
+  level: 1,
 }
 
 const b = {
-	speed: 4, // unchanged
-	power: 22, // changed
-	level: undefined, // changed
-	weight: 10, // added
+  speed: 4, // unchanged
+  power: 22, // changed
+  level: undefined, // changed
+  weight: 10, // added
 }
 
 diff(a, b)
@@ -63,25 +63,27 @@ diff(a, b)
 
 const past = '2016-04-24T10:39:23.419Z'
 
-diff.custom(
-	(a, b) => {
-		if (a instanceof Date && b instanceof Date) {
-			return a.getTime() === b.getTime()
-		}
-		return a === b
-	},
-	{
-		then: new Date(past),
-	},
-	{
-		then: new Date(past),
-	}
+import custom from 'object-diff'
+custom(
+  (a, b) => {
+    if (a instanceof Date && b instanceof Date) {
+      return a.getTime() === b.getTime()
+    }
+    return a === b
+  },
+  {
+    then: new Date(past),
+  },
+  {
+    then: new Date(past),
+  },
 )
 /*
 {}
 */
 ```
 
-# ES5
+# Compatibility
 
-For an ES5 friendlier version pin to `0.0.4`. It has no known issues.
+Versions `0.0.4` and `1.0.0` are functionally equivalent, without known issues,
+but are CommonJS modules and compatible with older runtimes.

@@ -1,15 +1,8 @@
-'use strict'
-
-strict.custom = custom
-strict.strict = strict
-
-module.exports = strict
-
-function strict(reference, ...versions) {
+export default function strict(reference, ...versions) {
 	return custom(isStrictlyEqual, reference, ...versions)
 }
 
-function custom(isEqual, reference, ...versions) {
+export function custom(isEqual, reference, ...versions) {
 	const patch = {}
 	for (const version of versions) {
 		for (const key of Object.keys(version)) {
